@@ -26,7 +26,16 @@ fn main() -> anyhow::Result<()> {
             let cef_dir = os_arch.to_string();
             let cef_dir = out_dir.join(&cef_dir);
 
-            if !fs::exists(&cef_dir)? {
+            if download_cef::check_archive_json(
+                &env::var("CARGO_PKG_VERSION")?,
+                cef_dir.to_str().unwrap(),
+            )
+            .is_err()
+            {
+                if fs::exists(&cef_dir)? {
+                    // Remove incomplete or outdated CEF directory.
+                    fs::remove_dir_all(&cef_dir)?;
+                }
                 let cef_version = download_cef::default_version(&env::var("CARGO_PKG_VERSION")?);
                 let index = CefIndex::download()?;
                 let platform = index.platform(&target)?;
