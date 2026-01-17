@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- fix error during downloading and extracting CEF binaries causes invalid state
+
 ## [143.4.0+143.0.13](https://github.com/tauri-apps/cef-rs/compare/cef-dll-sys-v143.3.0+143.0.13...cef-dll-sys-v143.4.0+143.0.13) - 2025-12-30
 
 ### Added
